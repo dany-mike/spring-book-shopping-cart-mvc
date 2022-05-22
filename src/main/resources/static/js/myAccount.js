@@ -8,6 +8,7 @@ const tabPane2 = document.getElementById("tab2");
 const tabPane3 = document.getElementById("tab3");
 
 signinTab.addEventListener("click", (e) => {
+  e.preventDefault();
   signupTab.classList.remove("active");
   passwordTab.classList.remove("active");
   tabPane2.classList.remove("active");
