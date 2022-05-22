@@ -11,8 +11,14 @@
     </li>
   </ul>
   <div class="tab-content mt-4">
-    <div class="tab-pane active" id="tab1">Sign in</div>
-    <div class="tab-pane" id="tab2">Signup</div>
-    <div class="tab-pane" id="tab3">Forgot password</div>
+    <div class="tab-pane active" id="tab1">
+      <div th:replace="fragments/signin.html"></div>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <div th:replace="fragments/signup.html"></div>
+    </div>
+    <div class="tab-pane" id="tab3">
+      <div th:replace="fragments/reset-password.html"></div>
+    </div>
   </div>
 </div>
