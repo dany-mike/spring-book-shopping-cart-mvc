@@ -1,29 +1,19 @@
-Vue.component("book-card", {
-  props: ["book"],
-  template: `<div class="card">
-        <div class="card-body">
-            <h6 class="card-title">
-                {{ player.name }}
-            </h6>
-            <p class="card-text">
-                <div>
-                    {{ player.description }}
-                </div>
-            </p>
-        </div>
-        </div>`,
+console.log("INDEX.JS");
+const signinTab = document.getElementById("signin-link");
+const signupTab = document.getElementById("signup-link");
+const passwordTab = document.getElementById("password-link");
+
+signinTab.addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log("TEST");
 });
 
-const app = new Vue({
-  el: "#contents",
-  data: {
-    players: [
-      { id: "1", name: "My book 1", description: "My description 1" },
-      {
-        id: "2",
-        name: "My book 2",
-        description: "My description 2",
-      },
-    ],
-  },
+signupTab.addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log("TEST");
+});
+
+passwordTab.addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log("TEST");
 });
