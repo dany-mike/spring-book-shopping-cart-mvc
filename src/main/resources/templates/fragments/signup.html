@@ -5,7 +5,11 @@
       You've successfully registered to our awesome app!
     </div>
   </div>
-  <form th:action="@{/registration}" method="post" th:object="${user}">
+  <form
+    th:action="@{/myAccount/registration}"
+    method="post"
+    th:object="${user}"
+  >
     <!-- FirstName input -->
     <div class="form-outline mb-4">
       <input
@@ -14,7 +18,7 @@
         class="form-control"
         th:field="*{firstName}"
       />
-      <label class="form-label" for="signup">First name</label>
+      <label class="form-label" for="signup-firstname">First name</label>
     </div>
 
     <!-- LastName input -->
@@ -36,7 +40,7 @@
         class="form-control"
         th:field="*{username}"
       />
-      <label class="form-label" for="signup">Username</label>
+      <label class="form-label" for="signup-username">Username</label>
     </div>
 
     <!-- Phone input -->
@@ -47,7 +51,7 @@
         class="form-control"
         th:field="*{phone}"
       />
-      <label class="form-label" for="signup">Phone</label>
+      <label class="form-label" for="signup-phone">Phone</label>
     </div>
 
     <!-- Email input -->
@@ -58,7 +62,7 @@
         class="form-control"
         th:field="*{email}"
       />
-      <label class="form-label" for="signup">Email address</label>
+      <label class="form-label" for="signup-email">Email address</label>
     </div>
 
     <!-- Password input -->
@@ -69,11 +73,11 @@
         class="form-control"
         th:field="*{password}"
       />
-      <label class="form-label" for="signup">Password</label>
+      <label class="form-label" for="signup-email">Password</label>
     </div>
 
     <!-- Submit button -->
-    <button type="button" class="btn btn-primary btn-block mb-4">
+    <button type="submit" class="btn btn-primary btn-block mb-4">
       Sign up
     </button>
   </form>

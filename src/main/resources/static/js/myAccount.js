@@ -1,4 +1,3 @@
-console.log("MYACCOUNT.JS");
 const signinTab = document.getElementById("signin-link");
 const signupTab = document.getElementById("signup-link");
 const passwordTab = document.getElementById("password-link");
