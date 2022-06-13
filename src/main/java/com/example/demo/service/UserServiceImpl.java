@@ -12,10 +12,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.controllers.dto.UserRegistrationDto;
 import com.example.demo.models.Role;
 import com.example.demo.models.User;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.web.dto.UserRegistrationDto;
 
 @Service
 public class UserServiceImpl implements UserService {

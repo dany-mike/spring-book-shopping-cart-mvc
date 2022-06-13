@@ -1,4 +1,4 @@
-package com.example.demo.web.dto;
+package com.example.demo.controllers.dto;
 
 public class UserRegistrationDto {
     private String firstName;
