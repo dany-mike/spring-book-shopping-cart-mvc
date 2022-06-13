@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
         .authorizeRequests()
         .antMatchers(
-            "/myAccount**",
+            "/registration**",
             "/js/**",
             "/css/**",
             "/img/**"
@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .authenticated()
         .and()
         .formLogin()
-        .loginPage("/myAccount/login")
+        .loginPage("/login")
         .permitAll()
         .and()
         .logout()
@@ -68,7 +68,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-    // TODO: Add Oauth 2 later
     // @Override
     // public void configure(HttpSecurity http) throws Exception {
     // http.authorizeRequests()

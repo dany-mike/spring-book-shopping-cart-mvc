@@ -10,12 +10,12 @@ import com.example.demo.controllers.dto.UserRegistrationDto;
 import com.example.demo.service.UserService;
 
 @Controller
-@RequestMapping("/myAccount")
-public class MyAccountController {
+@RequestMapping("/registration")
+public class UserRegistrationController {
 
     private UserService userService;
 
-    public MyAccountController(UserService userService) {
+    public UserRegistrationController(UserService userService) {
         super();
         this.userService = userService;
     }
@@ -27,18 +27,14 @@ public class MyAccountController {
 
     @GetMapping
     public String showRegistrationForm() {
-        return "myAccount";
+        return "signup";
     }
 
-    @GetMapping("/login")
-    public String showLoginForm() {
-        return "myAccount";
-    }
-
-    @PostMapping("/registration")
+    @PostMapping
     public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
+        // TODO: prevent two times the same user
         userService.save(registrationDto);
-        return "redirect:/myAccount";
+        return "redirect:/registration?success";
     }
 
 }
