@@ -12,7 +12,7 @@ import com.example.demo.service.UserService;
 @Controller
 @RequestMapping("/registration")
 public class UserRegistrationController {
-    
+
     private UserService userService;
 
     public UserRegistrationController(UserService userService) {

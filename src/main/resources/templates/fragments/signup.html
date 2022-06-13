@@ -1,22 +1,80 @@
-<form>
-  <!-- Email input -->
-  <div class="form-outline mb-4">
-    <input type="email" id="signup-email" class="form-control" />
-    <label class="form-label" for="signup">Email address</label>
+<div>
+  <h1>Signup</h1>
+  <div th:if="${param.success}">
+    <div class="alert alert-info">
+      You've successfully registered to our awesome app!
+    </div>
   </div>
+  <form th:action="@{/registration}" method="post" th:object="${user}">
+    <!-- FirstName input -->
+    <div class="form-outline mb-4">
+      <input
+        type="text"
+        id="signup-firstname"
+        class="form-control"
+        th:field="*{firstName}"
+      />
+      <label class="form-label" for="signup">First name</label>
+    </div>
 
-  <!-- Password input -->
-  <div class="form-outline mb-4">
-    <input type="password" id="signup-password" class="form-control" />
-    <label class="form-label" for="signup">Password</label>
-  </div>
+    <!-- LastName input -->
+    <div class="form-outline mb-4">
+      <input
+        type="text"
+        id="signup-lastname"
+        class="form-control"
+        th:field="*{lastName}"
+      />
+      <label class="form-label" for="signup">Last name</label>
+    </div>
 
-  <!-- Reapeat password input -->
-  <div class="form-outline mb-4">
-    <input type="password" id="signup-confirm-password" class="form-control" />
-    <label class="form-label" for="resetPassword">Confirm your password</label>
-  </div>
+    <!-- Username input -->
+    <div class="form-outline mb-4">
+      <input
+        type="text"
+        id="signup-username"
+        class="form-control"
+        th:field="*{username}"
+      />
+      <label class="form-label" for="signup">Username</label>
+    </div>
 
-  <!-- Submit button -->
-  <button type="button" class="btn btn-primary btn-block mb-4">Sign up</button>
-</form>
+    <!-- Phone input -->
+    <div class="form-outline mb-4">
+      <input
+        type="text"
+        id="signup-phone"
+        class="form-control"
+        th:field="*{phone}"
+      />
+      <label class="form-label" for="signup">Phone</label>
+    </div>
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input
+        type="email"
+        id="signup-email"
+        class="form-control"
+        th:field="*{email}"
+      />
+      <label class="form-label" for="signup">Email address</label>
+    </div>
+
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <input
+        type="password"
+        id="signup-password"
+        class="form-control"
+        th:field="*{password}"
+      />
+      <label class="form-label" for="signup">Password</label>
+    </div>
+
+    <!-- Submit button -->
+    <button type="button" class="btn btn-primary btn-block mb-4">
+      Sign up
+    </button>
+  </form>
+</div>
