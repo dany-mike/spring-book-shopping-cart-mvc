@@ -67,7 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-    // TODO: add Oauth2 on authentication
+    // TODO: add OAuth2 on authentication
     // @Override
     // public void configure(HttpSecurity http) throws Exception {
     // http.authorizeRequests()
