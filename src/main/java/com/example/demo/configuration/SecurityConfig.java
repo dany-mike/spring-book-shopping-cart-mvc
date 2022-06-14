@@ -69,26 +69,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
-
-    // TODO: add OAuth2 on authentication
-    // @Override
-    // public void configure(HttpSecurity http) throws Exception {
-    // http.authorizeRequests()
-    // .antMatchers("/admin").hasRole("ADMIN")
-    // .antMatchers("/user").hasRole("USER")
-
-    // .anyRequest().authenticated()
-    // .and()
-    // .formLogin()
-    // }
-
-    // @Override
-    // protected void configure(AuthenticationManagerBuilder auth) throws Exception
-    // {
-    // auth.inMemoryAuthentication()
-    // .withUser("user").password(passwordEncoder().encode("1234")).roles("USER")
-    // .and()
-    // .withUser("admin").password(passwordEncoder().encode("1234")).roles("ADMIN",
-    // "USER");
-    // }
 }

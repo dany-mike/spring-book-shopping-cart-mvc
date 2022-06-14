@@ -27,7 +27,7 @@
     <div th:replace="fragments/header.html"></div>
     <div class="container">
       <h1>Signin</h1>
-      <form th:action="@{/login}" method="post">
+      <form th:action="@{/signin}" method="post">
         <!-- error message -->
         <div th:if="${param.error}">
           <div class="alert alert-danger">Invalid username or password.</div>
