@@ -33,19 +33,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/js/**",
                         "/css/**",
                         "/img/**")
+
                 .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
+                .oauth2Login()
+                .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/signin")
                 .permitAll()
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/signin?logout")
                 .permitAll();
     }
 
@@ -77,8 +80,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // .anyRequest().authenticated()
     // .and()
     // .formLogin()
-    // .and()
-    // .oauth2Login();
     // }
 
     // @Override

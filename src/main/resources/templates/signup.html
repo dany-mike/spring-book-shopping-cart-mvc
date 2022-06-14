@@ -29,7 +29,7 @@
       <h1>Signup</h1>
       <div th:if="${param.success}">
         <div class="alert alert-info">
-          You've successfully registered to our awesome app!
+          You've successfully registered to the bookshop app
         </div>
       </div>
       <form th:action="@{registration}" method="post" th:object="${user}">
@@ -104,10 +104,7 @@
           Sign up
         </button>
         <div>
-          <span
-            >Have an account ?
-            <a href="/" th:href="@{/login}">Login here</a></span
-          >
+          <span>Have an account ? <a th:href="@{/signin}">Signin here</a></span>
         </div>
       </form>
     </div>
