@@ -1,7 +1,7 @@
 package com.example.demo.controllers;
 
-import org.aspectj.apache.bcel.classfile.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import net.bytebuddy.utility.RandomString;
 
+import com.example.demo.models.User;
 import com.example.demo.service.UserServiceImpl;
 import static com.example.demo.controllers.Utility.getSiteURL;
 
@@ -80,13 +81,36 @@ public class ForgotPasswordController {
         mailSender.send(message);
     }
 
-    // @GetMapping("/reset_password")
-    // public String showResetPasswordForm() {
+    @GetMapping("/reset_password")
+    public String showResetPasswordForm(@Param(value = "token") String token, Model model) {
+        User user = userService.getByResetPasswordToken(token);
+        model.addAttribute("token", token);
 
-    // }
+        if (user == null) {
+            model.addAttribute("message", "Invalid Token");
+            return "message";
+        }
 
-    // @PostMapping("/reset_password")
-    // public String processResetPassword() {
+        return "reset_password_form";
+    }
 
-    // }
+    @PostMapping("/reset_password")
+    public String processResetPassword(HttpServletRequest request, Model model) {
+        String token = request.getParameter("token");
+        String password = request.getParameter("password");
+
+        User customer = userService.getByResetPasswordToken(token);
+        model.addAttribute("title", "Reset your password");
+
+        if (customer == null) {
+            model.addAttribute("message", "Invalid Token");
+            return "message";
+        } else {
+            userService.updatePassword(customer, password);
+
+            model.addAttribute("message", "You have successfully changed your password.");
+        }
+
+        return "redirect:/signin";
+    }
 }

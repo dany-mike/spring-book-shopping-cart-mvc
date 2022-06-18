@@ -31,6 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         "/registration**",
                         "/home**",
+                        "/forgot_password**",
+                        "/reset_password**",
                         "/js/**",
                         "/css/**",
                         "/img/**")
@@ -44,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/signin")
                 .permitAll()
+                .defaultSuccessUrl("/home", true)
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
@@ -57,6 +60,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    // public void onAuthenticationSuccess(HttpServletRequest request,
+    // HttpServletResponse response,
+    // Authentication authentication) throws IOException, ServletException {
+
+    // String queryString = request.getQueryString();
+    // if (queryString == null) {
+    // response.setStatus(200);
+    // } else if (!queryString.contains("redirectUrl=")) {
+    // response.sendRedirect("/home");
+    // } else {
+    // queryString = URLDecoder.decode(queryString.replace("url=", ""), "utf-8");
+    // response.sendRedirect(queryString);
+    // }
+    // }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
