@@ -30,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/registration**",
+                        "/home**",
                         "/js/**",
                         "/css/**",
                         "/img/**")
@@ -37,8 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest()
                 .authenticated()
-                .and()
-                .oauth2Login()
+                // .and()
+                // .oauth2Login()
                 .and()
                 .formLogin()
                 .loginPage("/signin")

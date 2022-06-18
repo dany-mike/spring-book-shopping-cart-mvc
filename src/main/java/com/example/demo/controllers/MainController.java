@@ -10,8 +10,8 @@ public class MainController {
         return "signin";
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
+    @GetMapping("/home")
+    public String home() {
+        return "home";
     }
 }
