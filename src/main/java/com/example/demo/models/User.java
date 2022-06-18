@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
 import javax.persistence.CascadeType;
 
-
 @Entity
 public class User {
     @Id
@@ -28,21 +27,19 @@ public class User {
     @Column(name = "email_address", nullable = false, updatable = false)
     private String email;
     private String phone;
+    @Column(name = "reset_password_token")
+    private String resetPasswordToken;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-        name = "users_roles",
-        joinColumns = @JoinColumn(
-            name = "user_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(
-            name = "role_id", referencedColumnName = "id"))
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 
-    private Collection < Role > roles;
+    private Collection<Role> roles;
 
     public User() {
 
     }
 
-    public User(String firstName, String lastName, String email, String password, String username, String phone ,Collection < Role > roles) {
+    public User(String firstName, String lastName, String email, String password, String username, String phone,
+            Collection<Role> roles) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -53,10 +50,10 @@ public class User {
         this.roles = roles;
     }
 
-
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -64,6 +61,7 @@ public class User {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -71,6 +69,7 @@ public class User {
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -78,6 +77,7 @@ public class User {
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -85,6 +85,7 @@ public class User {
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -100,14 +101,24 @@ public class User {
     public String getPhone() {
         return phone;
     }
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public Collection < Role > getRoles() {
+    public Collection<Role> getRoles() {
         return roles;
     }
-    public void setRoles(Collection < Role > roles) {
+
+    public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getResetPasswordToken() {
+        return this.resetPasswordToken;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
     }
 }
