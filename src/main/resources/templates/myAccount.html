@@ -26,7 +26,9 @@
   </head>
   <body>
     <div th:replace="fragments/header.html"></div>
-    <div th:replace="fragments/tabs.html"></div>
-    <script type="text/javascript" th:src="@{/js/myAccount.js}"></script>
+    <div class="container">
+      <h1>My account page which is a protected page</h1>
+      Authenticated as <span sec:authentication="name"></span>
+    </div>
   </body>
 </html>

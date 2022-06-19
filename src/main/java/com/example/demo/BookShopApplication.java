@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BookShopApplication implements CommandLineRunner {
 
-	// TODO: follow this tutorial
-	// https://www.codejava.net/frameworks/spring-boot/spring-security-forgot-password-tutorial
 	public static void main(String[] args) {
 		SpringApplication.run(BookShopApplication.class, args);
 	}
