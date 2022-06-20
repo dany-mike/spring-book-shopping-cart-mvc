@@ -2,9 +2,12 @@ package com.example.demo.service;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -51,6 +54,21 @@ public class UserServiceImpl implements UserService {
 
         user.setResetPasswordToken(null);
         userRepository.save(user);
+    }
+
+    public User getUserByEmail(String email) {
+        return this.userRepository.findByEmail(email);
+    }
+
+    public User getCurrentUser(Authentication authentication) {
+        if (authentication == null)
+            return null;
+
+        User user = null;
+
+        user = this.getUserByEmail(authentication.getName());
+
+        return user;
     }
 
     @Override

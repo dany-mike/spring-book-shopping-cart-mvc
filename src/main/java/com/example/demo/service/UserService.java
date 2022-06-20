@@ -7,4 +7,6 @@ import com.example.demo.models.User;
 
 public interface UserService extends UserDetailsService {
     User save(UserRegistrationDto registrationDto);
+
+    // User getUser();
 }

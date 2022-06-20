@@ -1,0 +1,38 @@
+<div class="cart-items container">
+  <h1 th:text="${title}"></h1>
+  <h2 th:if="${items.isEmpty}">Your cart is empty</h2>
+  <div class="card mb-3" th:each="item : ${items}">
+    <div class="card-body" th:with="book = ${item.book}">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex flex-row align-items-center">
+          <div>
+            <img
+              th:src="@{/img/{image}(image=${book.image})}"
+              class="img-fluid rounded-3"
+              alt="Shopping item"
+              style="width: 65px"
+            />
+          </div>
+          <div class="ms-3">
+            <p class="small mb-0" th:text="${book.name}"></p>
+          </div>
+        </div>
+        <div class="d-flex flex-row align-items-center">
+          <div style="width: 100px" class="mr-2 d-flex align-items-center">
+            <input
+              class="form-control"
+              type="text"
+              th:value="${item.quantity}"
+            />
+          </div>
+          <div style="width: 80px" class="mx-4">
+            <span th:text="${book.price}"></span> <span>€</span>
+          </div>
+          <a href="#!" style="color: #cecece"
+            ><i class="fas fa-trash-alt"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
