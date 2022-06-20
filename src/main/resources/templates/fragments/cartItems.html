@@ -6,30 +6,30 @@
       <div class="d-flex justify-content-between">
         <div class="d-flex flex-row align-items-center">
           <div>
-            <img
-              th:src="@{/img/{image}(image=${book.image})}"
-              class="img-fluid rounded-3"
-              alt="Shopping item"
-              style="width: 65px"
-            />
+            <a th:href="@{/books/{id}(id=${book.id})}">
+              <img
+                th:src="@{/img/{image}(image=${book.image})}"
+                class="img-fluid rounded-3"
+                alt="Shopping item"
+                style="width: 65px"
+              />
+            </a>
           </div>
           <div class="ms-3">
             <p class="small mb-0" th:text="${book.name}"></p>
           </div>
         </div>
         <div class="d-flex flex-row align-items-center">
-          <div style="width: 100px" class="mr-2 d-flex align-items-center">
-            <input
-              class="form-control"
-              type="text"
-              th:value="${item.quantity}"
-            />
-          </div>
-          <div style="width: 80px" class="mx-4">
-            <span th:text="${book.price}"></span> <span>€</span>
+          <div
+            style="width: 50px"
+            class="mr-2 d-flex align-items-center"
+            th:replace="fragments/quantity_control :: quantity_control(${item.quantity}, ${book.id})"
+          ></div>
+          <div style="width: 80px" class="mx-4 mb-3">
+            <span th:text="${book.price}"></span><span>€</span>
           </div>
           <a href="#!" style="color: #cecece"
-            ><i class="fas fa-trash-alt"></i
+            ><i class="fas fa-trash-alt mb-3"></i
           ></a>
         </div>
       </div>

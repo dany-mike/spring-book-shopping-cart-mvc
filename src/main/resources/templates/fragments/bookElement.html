@@ -16,6 +16,11 @@
           <h5 class="remaining">
             Remaining books *<span th:text="${book.qty}"></span>
           </h5>
+          <div
+            style="width: 50px"
+            class="mr-2 d-flex align-items-center"
+            th:replace="fragments/quantity_control :: quantity_control(1, ${book.id})"
+          ></div>
           <div class="mt-2">
             <button class="btn btn-primary w-25" type="button">
               Add to cart
