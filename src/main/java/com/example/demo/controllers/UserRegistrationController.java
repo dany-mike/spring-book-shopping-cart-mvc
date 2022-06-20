@@ -32,7 +32,6 @@ public class UserRegistrationController {
 
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
-        // TODO: prevent two times the same user
         userService.save(registrationDto);
         return "redirect:/registration?success";
     }
