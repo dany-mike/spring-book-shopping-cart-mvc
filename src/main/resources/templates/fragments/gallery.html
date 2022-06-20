@@ -1,25 +1,24 @@
 <div class="container mt-4">
   <h1>Books</h1>
-  <select class="form-select" aria-label="Default select example">
-    <option selected value="all-books">All books</option>
-    <option value="News">News</option>
-    <option value="best-sellers">Best sellers</option>
-  </select>
   <div class="container my-4">
     <div class="row" th:if="${!books.empty}">
       <div class="card col-sm" th:each="book : ${books}">
-        <img
-          th:src="@{/img/{image}(image=${book.image})}"
-          class="card-img-top-gallery"
-          alt="attaque des titans"
-        />
+        <a th:href="@{/books/{id}(id=${book.id})}">
+          <img
+            th:src="@{/img/{image}(image=${book.image})}"
+            class="card-img-top-gallery"
+            alt="attaque des titans"
+          />
+        </a>
         <div class="card-body">
           <h5 class="card-title" th:text="${book.name}" />
           <p class="card-text">Price: <span th:text="${book.price}"></span>€</p>
           <p class="card-text">
             Remaining books: *<span th:text="${book.qty}"></span>
           </p>
-          <a href="#" class="btn btn-primary">Check the book</a>
+          <a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-primary"
+            >Book detail</a
+          >
         </div>
       </div>
     </div>
