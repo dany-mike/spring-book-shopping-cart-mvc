@@ -14,6 +14,6 @@ $(document).ready(function () {
     qtyInput = $("#quantity" + productId);
 
     newQty = parseInt(qtyInput.val()) + 1;
-    if (newQty > 0) qtyInput.val(newQty);
+    if (newQty <= 8) qtyInput.val(newQty);
   });
 });
