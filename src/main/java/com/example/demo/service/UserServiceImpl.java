@@ -71,7 +71,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(UserRegistrationDto registrationDto) {
-        // ADD a check to not add duplicate email
+
+        // TODO check if user already exist
+
         User user = new User(registrationDto.getFirstName(),
                 registrationDto.getLastName(), registrationDto.getEmail(),
                 passwordEncoder.encode(registrationDto.getPassword()), registrationDto.getUsername(),

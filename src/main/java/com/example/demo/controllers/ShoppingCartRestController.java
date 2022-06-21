@@ -2,9 +2,14 @@ package com.example.demo.controllers;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+
+import java.util.List;
+
+import org.hibernate.exception.spi.ViolatedConstraintNameExtracter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.models.CartItem;
 import com.example.demo.models.User;
 import com.example.demo.service.ShoppingCartService;
 import com.example.demo.service.UserServiceImpl;
@@ -49,8 +54,6 @@ public class ShoppingCartRestController {
 
         User user = userService.getCurrentUser(authentication);
 
-        System.out.println("BID " + bid + " QTY: " + qty);
-
         if (user == null) {
             return "You must be logged in to update this book";
         }
@@ -76,6 +79,25 @@ public class ShoppingCartRestController {
         shoppingCartService.removeBook(bid, user);
 
         return "The book has been removed from your cart";
+    }
+
+    @PostMapping("/cart/confirm")
+    public String confirmCart() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "You must be logged in to confirm your cart";
+        }
+
+        User user = userService.getCurrentUser(authentication);
+
+        if (user == null) {
+            return "You must be logged in to confirm your cart";
+        }
+
+        shoppingCartService.confirmOrder(user);
+
+        return "Cart confirmed successfully";
     }
 
 }

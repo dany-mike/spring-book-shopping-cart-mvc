@@ -13,12 +13,32 @@ $(document).ready(function () {
     e.preventDefault();
     removeFromCart($(this));
   });
+
+  $("#confirm-order").on("click", function (e) {
+    e.preventDefault();
+    confirmOrder();
+  });
+
   updateTotal();
 });
 
+function confirmOrder() {
+  url = "http://localhost:9000/cart/confirm";
+
+  $.ajax({
+    type: "POST",
+    url: url,
+  })
+    .done(function (response) {
+      alert(response);
+    })
+    .fail(function () {
+      alert("Error while adding the product to shopping cart");
+    });
+}
+
 function removeFromCart(link) {
   url = "http://localhost:9000" + link.attr("href");
-  console.log(url);
 
   $.ajax({
     type: "POST",
