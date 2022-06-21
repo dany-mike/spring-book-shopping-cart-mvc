@@ -43,7 +43,7 @@ function updateQuantity(bookId, quantity) {
     url: url,
   })
     .done(function (newSubtotal) {
-      updateSubtotal();
+      updateSubtotal(newSubtotal, bookId);
       updateTotal();
     })
     .fail(function (err) {
@@ -51,7 +51,9 @@ function updateQuantity(bookId, quantity) {
     });
 }
 
-function updateSubtotal() {}
+function updateSubtotal(newSubtotal, productId) {
+  $("#subtotal" + productId).text(newSubtotal);
+}
 
 function updateTotal() {
   total = 0.0;

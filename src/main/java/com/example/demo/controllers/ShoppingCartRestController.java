@@ -59,4 +59,23 @@ public class ShoppingCartRestController {
         return String.valueOf(subtotal);
     }
 
+    @PostMapping("/cart/remove/{bid}")
+    public String removeBook(@PathVariable Long bid) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "You must be logged in to updat this book";
+        }
+
+        User user = userService.getCurrentUser(authentication);
+
+        if (user == null) {
+            return "You must be logged in to add this book";
+        }
+
+        shoppingCartService.removeBook(bid, user);
+
+        return "The book has been remove from your cart";
+    }
+
 }
