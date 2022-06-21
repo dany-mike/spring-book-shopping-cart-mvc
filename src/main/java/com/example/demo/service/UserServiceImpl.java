@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(encodedPassword);
 
         user.setResetPasswordToken(null);
+
         userRepository.save(user);
     }
 
@@ -71,9 +72,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(UserRegistrationDto registrationDto) {
-
-        // TODO check if user already exist
-
         User user = new User(registrationDto.getFirstName(),
                 registrationDto.getLastName(), registrationDto.getEmail(),
                 passwordEncoder.encode(registrationDto.getPassword()), registrationDto.getUsername(),

@@ -3,13 +3,9 @@ package com.example.demo.controllers;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
-import java.util.List;
-
-import org.hibernate.exception.spi.ViolatedConstraintNameExtracter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.models.CartItem;
 import com.example.demo.models.User;
 import com.example.demo.service.ShoppingCartService;
 import com.example.demo.service.UserServiceImpl;

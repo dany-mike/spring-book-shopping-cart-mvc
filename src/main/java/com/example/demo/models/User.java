@@ -24,7 +24,7 @@ public class User {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "email_address", nullable = false, updatable = false)
+    @Column(name = "email_address", nullable = false, updatable = false, unique = true)
     private String email;
     private String phone;
     @Column(name = "reset_password_token")
