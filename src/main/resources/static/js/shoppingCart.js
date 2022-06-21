@@ -31,6 +31,7 @@ function confirmOrder() {
   })
     .done(function (response) {
       alert(response);
+      location.reload();
     })
     .fail(function () {
       alert("Error while adding the product to shopping cart");

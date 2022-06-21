@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,11 +59,26 @@ public class ShoppingCartService {
         cartItemRepository.deleteByUserAndBook(user.getId(), bookId);
     }
 
-    public List<CartItem> confirmOrder(User user) {
+    public void confirmOrder(User user) {
         List<CartItem> cartItems = getCartItemsUser(user);
 
-        System.out.println(cartItems);
+        for (CartItem item : cartItems) {
+            updateInventory(item);
+        }
 
-        return cartItems;
+        deleteUserCartItem(user.getId());
+
+    }
+
+    private void updateInventory(CartItem item) {
+        Book book = bookRepository.findById(item.getBook().getId()).get();
+
+        Integer updatedQuantity = book.getQty() - item.getQuantity();
+
+        bookRepository.updateQuantity(updatedQuantity, book.getId());
+    }
+
+    private void deleteUserCartItem(Long userId) {
+        cartItemRepository.deleteUserCartItem(userId);
     }
 }
