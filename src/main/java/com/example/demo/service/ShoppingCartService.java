@@ -31,7 +31,7 @@ public class ShoppingCartService {
         CartItem cartItem = cartItemRepository.findByUserAndBook(user, book);
 
         if (cartItem != null) {
-            addedQuantity = cartItem.getQuantity() + quantity;
+            addedQuantity = quantity;
             cartItem.setQuantity(addedQuantity);
         } else {
             cartItem = new CartItem();

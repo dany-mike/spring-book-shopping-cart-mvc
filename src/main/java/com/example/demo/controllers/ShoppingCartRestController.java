@@ -31,6 +31,10 @@ public class ShoppingCartRestController {
 
         User user = userService.getCurrentUser(authentication);
 
+        if (user == null) {
+            return "You must be logged in to add this book to your shopping cart";
+        }
+
         Integer addedQuantity = shoppingCartService.addBook(bid, qty, user);
         return addedQuantity + " item(s) of this product were added to your shopping cart.";
     }
