@@ -44,7 +44,7 @@ public class ShoppingCartRestController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-            return "You must be logged in to updat this book";
+            return "You must be logged in to update this book";
         }
 
         User user = userService.getCurrentUser(authentication);
@@ -52,7 +52,7 @@ public class ShoppingCartRestController {
         System.out.println("BID " + bid + " QTY: " + qty);
 
         if (user == null) {
-            return "You must be logged in to add this book";
+            return "You must be logged in to update this book";
         }
 
         float subtotal = shoppingCartService.updateQuantity(bid, qty, user);
@@ -64,18 +64,18 @@ public class ShoppingCartRestController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-            return "You must be logged in to updat this book";
+            return "You must be logged in to remove this book";
         }
 
         User user = userService.getCurrentUser(authentication);
 
         if (user == null) {
-            return "You must be logged in to add this book";
+            return "You must be logged in to remove this book";
         }
 
         shoppingCartService.removeBook(bid, user);
 
-        return "The book has been remove from your cart";
+        return "The book has been removed from your cart";
     }
 
 }

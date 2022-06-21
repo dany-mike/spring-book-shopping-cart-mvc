@@ -8,8 +8,32 @@ $(document).ready(function () {
     e.preventDefault();
     increaseQuantity($(this));
   });
+
+  $(".link-remove").on("click", function (e) {
+    e.preventDefault();
+    removeFromCart($(this));
+  });
   updateTotal();
 });
+
+function removeFromCart(link) {
+  url = "http://localhost:9000" + link.attr("href");
+  console.log(url);
+
+  $.ajax({
+    type: "POST",
+    url: url,
+  })
+    .done(function (response) {
+      if (response.includes("removed")) {
+        alert(response);
+        location.reload();
+      }
+    })
+    .fail(function (err) {
+      alert("Error while adding the product to shopping cart");
+    });
+}
 
 function decreaseQuantity(link) {
   productId = link.attr("pid");
