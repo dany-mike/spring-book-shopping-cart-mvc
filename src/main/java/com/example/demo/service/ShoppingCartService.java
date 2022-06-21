@@ -46,6 +46,7 @@ public class ShoppingCartService {
     }
 
     public float updateQuantity(Long bookId, Integer quantity, User user) {
+        System.out.println("UPDATE QTY" + bookId + " " + quantity);
         cartItemRepository.updateQuantity(quantity, bookId, user.getId());
 
         Book book = bookRepository.findById(bookId).get();

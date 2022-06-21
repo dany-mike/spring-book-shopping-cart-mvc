@@ -39,4 +39,24 @@ public class ShoppingCartRestController {
         return addedQuantity + " item(s) of this product were added to your shopping cart.";
     }
 
+    @PostMapping("/cart/update/{bid}/{qty}")
+    public String updateQuantity(@PathVariable Long bid, @PathVariable Integer qty) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "You must be logged in to updat this book";
+        }
+
+        User user = userService.getCurrentUser(authentication);
+
+        System.out.println("BID " + bid + " QTY: " + qty);
+
+        if (user == null) {
+            return "You must be logged in to add this book";
+        }
+
+        float subtotal = shoppingCartService.updateQuantity(bid, qty, user);
+        return String.valueOf(subtotal);
+    }
+
 }

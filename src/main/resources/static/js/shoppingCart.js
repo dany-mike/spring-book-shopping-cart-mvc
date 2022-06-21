@@ -16,9 +16,9 @@ function decreaseQuantity(link) {
   qtyInput = $("#quantity" + productId);
 
   newQty = parseInt(qtyInput.val()) - 1;
-  console.log(newQty);
   if (newQty > 0) {
-    updateQuantity();
+    qtyInput.val(newQty);
+    updateQuantity(productId, newQty);
   }
 }
 
@@ -27,10 +27,31 @@ function increaseQuantity(link) {
   qtyInput = $("#quantity" + productId);
 
   newQty = parseInt(qtyInput.val()) + 1;
-  if (newQty <= 8) qtyInput.val(newQty);
+  if (newQty <= 8) {
+    qtyInput.val(newQty);
+    updateQuantity(productId, newQty);
+  }
 }
 
-function updateQuantity() {}
+function updateQuantity(bookId, quantity) {
+  quantity = $("#quantity" + bookId).val();
+
+  url = "http://localhost:9000/cart/update/" + bookId + "/" + quantity;
+
+  $.ajax({
+    type: "POST",
+    url: url,
+  })
+    .done(function (newSubtotal) {
+      updateSubtotal();
+      updateTotal();
+    })
+    .fail(function (err) {
+      alert("Error while adding the product to shopping cart");
+    });
+}
+
+function updateSubtotal() {}
 
 function updateTotal() {
   total = 0.0;

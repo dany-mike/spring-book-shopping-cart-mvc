@@ -5,7 +5,6 @@ $(document).ready(function () {
 });
 
 function addToCart() {
-  console.log(contextPath);
   quantity = $("#quantity" + bookId).val();
 
   url = "http://localhost:9000/cart/add/" + bookId + "/" + quantity;

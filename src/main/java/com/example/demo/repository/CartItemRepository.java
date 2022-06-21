@@ -2,9 +2,9 @@ package com.example.demo.repository;
 
 import java.util.List;
 
-import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.models.Book;
@@ -18,7 +18,7 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
 
     public CartItem findByUserAndBook(User user, Book book);
 
-    @Query("UPDATE CartItem c SET c.quantity = ?1 where c.book.id = ?2" + "AND c.user.id = ?3")
+    @Query(value = "UPDATE CartItem c SET c.quantity = ? WHERE c.book.id = ?" + "AND c.user.id = ?", nativeQuery = true)
     @Modifying
     public void updateQuantity(Integer quantity, Long bookId, Long userId);
 }
