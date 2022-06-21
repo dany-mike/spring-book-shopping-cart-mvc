@@ -44,4 +44,13 @@ public class ShoppingCartService {
 
         return addedQuantity;
     }
+
+    public float updateQuantity(Long bookId, Integer quantity, User user) {
+        cartItemRepository.updateQuantity(quantity, bookId, user.getId());
+
+        Book book = bookRepository.findById(bookId).get();
+
+        float subtotal = book.getPrice() * quantity;
+        return subtotal;
+    }
 }
