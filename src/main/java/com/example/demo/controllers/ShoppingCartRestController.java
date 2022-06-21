@@ -26,14 +26,14 @@ public class ShoppingCartRestController {
     public String addBookToCart(@PathVariable Long bid, @PathVariable Integer qty) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-            return "You must be logged in to add this book to your shopping cart";
+        if (authentication instanceof AnonymousAuthenticationToken) {
+            return "You must be logged in as a MySQL user  to add this book to your shopping cart";
         }
 
         User user = userService.getCurrentUser(authentication);
 
         if (user == null) {
-            return "You must be logged in to add this book to your shopping cart";
+            return "You must be logged in as a MySQL user to add this book to your shopping cart";
         }
 
         Integer addedQuantity = shoppingCartService.addBook(bid, qty, user);

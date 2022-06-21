@@ -13,6 +13,11 @@ public class MainController {
     @Autowired
     private BookService bookService;
 
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/home";
+    }
+
     @GetMapping("/signin")
     public String signin() {
         return "signin";

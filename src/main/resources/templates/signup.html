@@ -32,6 +32,10 @@
           You've successfully registered to the bookshop app
         </div>
       </div>
+
+      <div th:if="${param.exist}">
+        <div class="alert alert-danger">Email already exist</div>
+      </div>
       <form th:action="@{registration}" method="post" th:object="${user}">
         <!-- FirstName input -->
         <div class="form-outline mb-4">

@@ -42,7 +42,7 @@ public class UserRegistrationController {
     public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
 
         if (userServiceImpl.findByEmail(registrationDto.getEmail()) != null) {
-            return "redirect:/home";
+            return "redirect:/registration?exist";
         }
 
         userService.save(registrationDto);
